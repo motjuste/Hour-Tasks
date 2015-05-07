@@ -14,11 +14,31 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
+    @IBAction func changeSorting(sender: AnyObject) {
+        tableView.reloadData()
+    }
+    
+    
     func getFetchedResultsController() -> NSFetchedResultsController {
+        // Doesn't work for priority !!!!!
+        
+        let segmentControlNav = self.navigationItem.titleView as! UISegmentedControl
+        var sectionNameKey = ""
+        switch segmentControlNav.selectedSegmentIndex    {
+        case 0 :
+            sectionNameKey = "deadlineDate"
+            
+        case 1 :
+            sectionNameKey = "priority"
+        default:
+            sectionNameKey = "deadlineDate"
+        }
         fetchedResultsController =  NSFetchedResultsController(
-            fetchRequest: taskFetchRequest(),
-            managedObjectContext: managedObjectContext!,
-            sectionNameKeyPath: "deadlineDate", cacheName: nil)
+                fetchRequest: taskFetchRequest(),
+                managedObjectContext: managedObjectContext!,
+                sectionNameKeyPath: sectionNameKey, cacheName: nil)
+            
+        
         return fetchedResultsController
     }
     

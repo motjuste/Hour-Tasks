@@ -97,6 +97,9 @@
                                 <segment title="Priority"/>
                             </segments>
                             <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="changeSorting:" destination="rBE-fw-tRh" eventType="valueChanged" id="rzd-7K-PKr"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pru-J5-RSg">
                             <connections>
