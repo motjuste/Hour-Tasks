@@ -15,5 +15,10 @@ class Tasks: NSManagedObject {
     @NSManaged var desc: String
     @NSManaged var done: Bool
     @NSManaged var priority: Int16
+    var deadlineDate: NSDate {
+        let cal = NSCalendar.currentCalendar()
+        let components = cal.components(NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear, fromDate: deadline)
+        return cal.dateFromComponents(components)!
+    }
 
 }

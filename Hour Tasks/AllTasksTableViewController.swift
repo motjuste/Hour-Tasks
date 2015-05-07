@@ -18,14 +18,15 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         fetchedResultsController =  NSFetchedResultsController(
             fetchRequest: taskFetchRequest(),
             managedObjectContext: managedObjectContext!,
-            sectionNameKeyPath: nil, cacheName: nil)
+            sectionNameKeyPath: "deadlineDate", cacheName: nil)
         return fetchedResultsController
     }
     
     func taskFetchRequest() -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: "Tasks")
-        let sortDescriptor = NSSortDescriptor(key: "deadline", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let deadlineSortDescriptor = NSSortDescriptor(key: "deadline", ascending: true)
+        let prioritySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
+        fetchRequest.sortDescriptors = [deadlineSortDescriptor]
         return fetchRequest
     }
     
@@ -59,6 +60,9 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         fetchedResultsController = getFetchedResultsController()
         fetchedResultsController.delegate = self
         fetchedResultsController.performFetch(nil)
+        
+        let segmentControlNav = self.navigationItem.titleView as! UISegmentedControl
+        segmentControlNav.selectedSegmentIndex = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,8 +107,6 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
             
             cell.taskDesc?.attributedText = NSAttributedString(string: task.desc, attributes: strikeThroughAttribute)
             cell.taskDesc?.enabled = false
-            
-//            cell.deadline?.attributedText = NSAttributedString(string: dateFormatter.stringFromDate(task.deadline), attributes: strikeThroughAttribute)
             cell.deadline?.enabled = false
             cell.priorityLabel.enabled = false
             
@@ -126,15 +128,6 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         tableView.reloadData()
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 //        if editingStyle == .Delete {
@@ -148,22 +141,14 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         managedObjectContext?.deleteObject(managedObject)
         managedObjectContext?.save(nil)
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let currentSection = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let currString = currentSection.name
+        return currString?.substringToIndex(advance(currString!.startIndex, 10))
+        
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
