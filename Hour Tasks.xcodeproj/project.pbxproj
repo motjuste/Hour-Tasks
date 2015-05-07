@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		2081EAE71AFAA1430048ABC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081EAE61AFAA1430048ABC4 /* AppDelegate.swift */; };
 		2081EAEA1AFAA1430048ABC4 /* Hour_Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2081EAE81AFAA1430048ABC4 /* Hour_Tasks.xcdatamodeld */; };
-		2081EAEC1AFAA1430048ABC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081EAEB1AFAA1430048ABC4 /* ViewController.swift */; };
 		2081EAEF1AFAA1430048ABC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2081EAED1AFAA1430048ABC4 /* Main.storyboard */; };
 		2081EAF11AFAA1430048ABC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2081EAF01AFAA1430048ABC4 /* Images.xcassets */; };
 		2081EAF41AFAA1430048ABC4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2081EAF21AFAA1430048ABC4 /* LaunchScreen.xib */; };
 		2081EB001AFAA1430048ABC4 /* Hour_TasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081EAFF1AFAA1430048ABC4 /* Hour_TasksTests.swift */; };
+		2081EB0C1AFAA2080048ABC4 /* AllTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081EB0B1AFAA2080048ABC4 /* AllTasksTableViewController.swift */; };
+		20A34BAF1AFAAED20061337F /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A34BAE1AFAAED20061337F /* AddNewTaskViewController.swift */; };
+		20A34BB11AFADA570061337F /* AddBoringTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A34BB01AFADA570061337F /* AddBoringTaskViewController.swift */; };
+		20A34BB91AFAEA200061337F /* AllTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A34BB81AFAEA200061337F /* AllTasksTableViewCell.swift */; };
+		20A34BBF1AFAF5930061337F /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A34BBE1AFAF5930061337F /* Tasks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +35,17 @@
 		2081EAE51AFAA1430048ABC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2081EAE61AFAA1430048ABC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2081EAE91AFAA1430048ABC4 /* Hour_Tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hour_Tasks.xcdatamodel; sourceTree = "<group>"; };
-		2081EAEB1AFAA1430048ABC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2081EAEE1AFAA1430048ABC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2081EAF01AFAA1430048ABC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2081EAF31AFAA1430048ABC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2081EAF91AFAA1430048ABC4 /* Hour TasksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hour TasksTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2081EAFE1AFAA1430048ABC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2081EAFF1AFAA1430048ABC4 /* Hour_TasksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour_TasksTests.swift; sourceTree = "<group>"; };
+		2081EB0B1AFAA2080048ABC4 /* AllTasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTasksTableViewController.swift; sourceTree = "<group>"; };
+		20A34BAE1AFAAED20061337F /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
+		20A34BB01AFADA570061337F /* AddBoringTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBoringTaskViewController.swift; sourceTree = "<group>"; };
+		20A34BB81AFAEA200061337F /* AllTasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTasksTableViewCell.swift; sourceTree = "<group>"; };
+		20A34BBE1AFAF5930061337F /* Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +87,17 @@
 		2081EAE31AFAA1430048ABC4 /* Hour Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				20A34BBE1AFAF5930061337F /* Tasks.swift */,
 				2081EAE61AFAA1430048ABC4 /* AppDelegate.swift */,
-				2081EAEB1AFAA1430048ABC4 /* ViewController.swift */,
 				2081EAED1AFAA1430048ABC4 /* Main.storyboard */,
 				2081EAF01AFAA1430048ABC4 /* Images.xcassets */,
 				2081EAF21AFAA1430048ABC4 /* LaunchScreen.xib */,
 				2081EAE81AFAA1430048ABC4 /* Hour_Tasks.xcdatamodeld */,
 				2081EAE41AFAA1430048ABC4 /* Supporting Files */,
+				2081EB0B1AFAA2080048ABC4 /* AllTasksTableViewController.swift */,
+				20A34BAE1AFAAED20061337F /* AddNewTaskViewController.swift */,
+				20A34BB01AFADA570061337F /* AddBoringTaskViewController.swift */,
+				20A34BB81AFAEA200061337F /* AllTasksTableViewCell.swift */,
 			);
 			path = "Hour Tasks";
 			sourceTree = "<group>";
@@ -215,9 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2081EAEC1AFAA1430048ABC4 /* ViewController.swift in Sources */,
+				20A34BBF1AFAF5930061337F /* Tasks.swift in Sources */,
 				2081EAEA1AFAA1430048ABC4 /* Hour_Tasks.xcdatamodeld in Sources */,
+				2081EB0C1AFAA2080048ABC4 /* AllTasksTableViewController.swift in Sources */,
+				20A34BAF1AFAAED20061337F /* AddNewTaskViewController.swift in Sources */,
 				2081EAE71AFAA1430048ABC4 /* AppDelegate.swift in Sources */,
+				20A34BB91AFAEA200061337F /* AllTasksTableViewCell.swift in Sources */,
+				20A34BB11AFADA570061337F /* AddBoringTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +431,7 @@
 				2081EB051AFAA1430048ABC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2081EB061AFAA1430048ABC4 /* Build configuration list for PBXNativeTarget "Hour TasksTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +440,7 @@
 				2081EB081AFAA1430048ABC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
