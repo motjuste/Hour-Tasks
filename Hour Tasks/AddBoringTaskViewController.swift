@@ -17,6 +17,7 @@ class AddBoringTaskViewController: UIViewController {
     
     @IBOutlet weak var taskDesc: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var prioritySelection: UISegmentedControl!
     
     // Navigation and saving
     @IBAction func done(sender: AnyObject) {
@@ -32,6 +33,7 @@ class AddBoringTaskViewController: UIViewController {
         task?.desc = taskDesc.text
         task?.deadline = datePicker.date
         task?.done = false
+        task?.priority = Int16(prioritySelection.selectedSegmentIndex + 1)
         managedObjectContext?.save(nil)
     }
     
@@ -41,6 +43,7 @@ class AddBoringTaskViewController: UIViewController {
         task.desc = taskDesc.text
         task.deadline = datePicker.date
         task.done = false
+        task.priority = Int16(prioritySelection.selectedSegmentIndex + 1)
         managedObjectContext!.save(nil)
     }
     
@@ -62,6 +65,7 @@ class AddBoringTaskViewController: UIViewController {
             self.navigationItem.title = "Edit Task"
             taskDesc?.text = task!.desc
             datePicker?.setDate(task!.deadline, animated: true)
+            prioritySelection.selectedSegmentIndex = Int(task!.priority - 1)
         }
     }
 

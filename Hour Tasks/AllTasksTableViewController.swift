@@ -94,6 +94,9 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         cell.doneButton?.tag = indexPath.row
         cell.doneButton?.addTarget(self, action: "markDone:", forControlEvents: .TouchUpInside)
         
+        let priorityString = "!!!"
+        cell.priorityLabel?.text = priorityString.substringToIndex(advance(priorityString.startIndex, Int(task.priority)))
+        
         
         if task.done {
             let strikeThroughAttribute = [NSStrikethroughStyleAttributeName: 2]
@@ -103,9 +106,15 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
             
 //            cell.deadline?.attributedText = NSAttributedString(string: dateFormatter.stringFromDate(task.deadline), attributes: strikeThroughAttribute)
             cell.deadline?.enabled = false
+            cell.priorityLabel.enabled = false
+            
+            // #4CAF50
+            cell.doneButton?.backgroundColor = UIColor(red: 0x1D/255, green: 0xE9/255, blue: 0xB6/255, alpha: 1.0)
         } else {
             cell.taskDesc?.enabled = true
             cell.deadline?.enabled = true
+            cell.doneButton?.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            cell.priorityLabel.enabled = true
         }
             
         
@@ -116,7 +125,7 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.reloadData()
     }
-    
+
 
     /*
     // Override to support conditional editing of the table view.

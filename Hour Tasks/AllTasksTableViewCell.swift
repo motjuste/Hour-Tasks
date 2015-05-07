@@ -14,6 +14,7 @@ class AllTasksTableViewCell: UITableViewCell {
     @IBOutlet weak var deadline: UILabel!
     @IBOutlet weak var taskDesc: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var priorityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
