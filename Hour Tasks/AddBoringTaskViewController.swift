@@ -31,6 +31,7 @@ class AddBoringTaskViewController: UIViewController {
     func editTask() {
         task?.desc = taskDesc.text
         task?.deadline = datePicker.date
+        task?.done = false
         managedObjectContext?.save(nil)
     }
     
@@ -39,6 +40,7 @@ class AddBoringTaskViewController: UIViewController {
         let task = Tasks(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         task.desc = taskDesc.text
         task.deadline = datePicker.date
+        task.done = false
         managedObjectContext!.save(nil)
     }
     

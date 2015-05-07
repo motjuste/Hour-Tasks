@@ -11,7 +11,9 @@ import CoreData
 
 class Tasks: NSManagedObject {
 
-    @NSManaged var desc: String
     @NSManaged var deadline: NSDate
+    @NSManaged var desc: String
+    @NSManaged var done: Bool
+    @NSManaged var priority: Int16
 
 }

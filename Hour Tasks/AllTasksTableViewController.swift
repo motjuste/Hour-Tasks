@@ -29,6 +29,24 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         return fetchRequest
     }
     
+    func markDone(sender: UIButton) {
+        
+        if let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0) {
+            let task = fetchedResultsController.objectAtIndexPath(indexPath) as! Tasks
+            
+            if task.done {
+                task.done = false
+            } else {
+                task.done = true
+            }
+            
+            managedObjectContext?.save(nil)
+        } else {
+            println("Error Here")
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,15 +82,33 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AllTasksTableViewCell", forIndexPath: indexPath) as! AllTasksTableViewCell
+        var cell: AllTasksTableViewCell = tableView.dequeueReusableCellWithIdentifier("AllTasksTableViewCell", forIndexPath: indexPath) as! AllTasksTableViewCell
 
         let task = fetchedResultsController.objectAtIndexPath(indexPath) as! Tasks
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EE, MMMM d, hh:mm a"
+        dateFormatter.dateFormat = "hh:mm a"
         
-        cell.taskDesc.text = task.desc
-        cell.deadline.text = dateFormatter.stringFromDate(task.deadline)
+        cell.taskDesc?.attributedText = NSAttributedString(string: task.desc)
+        cell.deadline?.attributedText = NSAttributedString(string: dateFormatter.stringFromDate(task.deadline))
+        cell.doneButton?.tag = indexPath.row
+        cell.doneButton?.addTarget(self, action: "markDone:", forControlEvents: .TouchUpInside)
+        
+        
+        if task.done {
+            let strikeThroughAttribute = [NSStrikethroughStyleAttributeName: 2]
+            
+            cell.taskDesc?.attributedText = NSAttributedString(string: task.desc, attributes: strikeThroughAttribute)
+            cell.taskDesc?.enabled = false
+            
+//            cell.deadline?.attributedText = NSAttributedString(string: dateFormatter.stringFromDate(task.deadline), attributes: strikeThroughAttribute)
+            cell.deadline?.enabled = false
+        } else {
+            cell.taskDesc?.enabled = true
+            cell.deadline?.enabled = true
+        }
+            
+        
         
         return cell
     }

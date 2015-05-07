@@ -10,8 +10,10 @@ import UIKit
 
 class AllTasksTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var taskDesc: UILabel!
+    
     @IBOutlet weak var deadline: UILabel!
+    @IBOutlet weak var taskDesc: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -3,8 +3,10 @@
     <entity name="Tasks" representedClassName="Hour_Tasks.Tasks" syncable="YES">
         <attribute name="deadline" attributeType="Date" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="done" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="priority" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="1" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tasks" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Tasks" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>
