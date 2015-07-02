@@ -15,6 +15,8 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
     @IBAction func changeSorting(sender: AnyObject) {
+        fetchedResultsController = getFetchedResultsController()
+        fetchedResultsController.performFetch(nil)
         tableView.reloadData()
     }
     
@@ -27,7 +29,6 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         switch segmentControlNav.selectedSegmentIndex    {
         case 0 :
             sectionNameKey = "deadlineDate"
-            
         case 1 :
             sectionNameKey = "priority"
         default:
@@ -46,15 +47,14 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         let fetchRequest = NSFetchRequest(entityName: "Tasks")
         let deadlineSortDescriptor = NSSortDescriptor(key: "deadline", ascending: true)
         let prioritySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
-        fetchRequest.sortDescriptors = [deadlineSortDescriptor]
+        fetchRequest.sortDescriptors = [deadlineSortDescriptor, prioritySortDescriptor]
         return fetchRequest
     }
     
-    func markDone(sender: UIButton) {
-        
-        if let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0) {
-            let task = fetchedResultsController.objectAtIndexPath(indexPath) as! Tasks
-            
+    func markDone(sender: UITableViewCell) {
+        let indexPath = self.tableView.indexPathForCell(sender)
+//        if let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0) {
+            let task = fetchedResultsController.objectAtIndexPath(indexPath!) as! Tasks
             if task.done {
                 task.done = false
             } else {
@@ -62,9 +62,14 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
             }
             
             managedObjectContext?.save(nil)
-        } else {
-            println("Error Here")
-        }
+//        } else {
+//            println("Error Here")
+//        }
+        
+//        println(indexPath.row)
+//        println(indexPath.section)
+        
+        tableView.reloadData()
 
     }
     
@@ -116,7 +121,8 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
         cell.taskDesc?.attributedText = NSAttributedString(string: task.desc)
         cell.deadline?.attributedText = NSAttributedString(string: dateFormatter.stringFromDate(task.deadline))
         cell.doneButton?.tag = indexPath.row
-        cell.doneButton?.addTarget(self, action: "markDone:", forControlEvents: .TouchUpInside)
+        
+        cell.doneButton?.addTarget(cell, action: "markDone:", forControlEvents: .TouchUpInside)
         
         let priorityString = "!!!"
         cell.priorityLabel?.text = priorityString.substringToIndex(advance(priorityString.startIndex, Int(task.priority)))
@@ -165,7 +171,17 @@ class AllTasksTableViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let currentSection = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
         let currString = currentSection.name
-        return currString?.substringToIndex(advance(currString!.startIndex, 10))
+        let segNavCon = self.navigationItem.titleView as! UISegmentedControl
+        switch segNavCon.selectedSegmentIndex {
+        case 0:
+                return currString?.substringToIndex(advance(currString!.startIndex, 10))
+        case 1 :
+                let priorityString = "!!!"
+                return  priorityString.substringToIndex(advance(priorityString.startIndex, currString!.toInt()! + 1))
+        default:
+                return currString
+        }
+        
         
     }
     

@@ -34,6 +34,7 @@ class AddBoringTaskViewController: UIViewController {
         task?.deadline = datePicker.date
         task?.done = false
         task?.priority = Int16(prioritySelection.selectedSegmentIndex + 1)
+        task?.deadlineDate = setZerothDateFromDate(datePicker.date)
         managedObjectContext?.save(nil)
     }
     
@@ -44,6 +45,7 @@ class AddBoringTaskViewController: UIViewController {
         task.deadline = datePicker.date
         task.done = false
         task.priority = Int16(prioritySelection.selectedSegmentIndex + 1)
+        task.deadlineDate = setZerothDateFromDate(datePicker.date)
         managedObjectContext!.save(nil)
     }
     
@@ -53,6 +55,12 @@ class AddBoringTaskViewController: UIViewController {
     
     func dismissAddNewTaskVC() {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func setZerothDateFromDate(date: NSDate) -> NSDate {
+        let cal = NSCalendar.currentCalendar()
+        let components = cal.components(NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear, fromDate: date)
+        return cal.dateFromComponents(components)!
     }
     
     override func viewDidLoad() {
